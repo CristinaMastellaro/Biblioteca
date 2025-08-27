@@ -1,0 +1,7 @@
+.plus-button {
+  bottom: 1em;
+  right: 1em;
+  background-color: #204212;
+  border-radius: 1em;
+  display: flex;
+}

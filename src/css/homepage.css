@@ -1,0 +1,12 @@
+.container {
+  background-color: #1c3213;
+  color: white;
+}
+
+.menu-item:hover,
+.menu-item:focus {
+  transform: scale(1.1);
+  background-color: #204212;
+  z-index: 1;
+  cursor: pointer;
+}
