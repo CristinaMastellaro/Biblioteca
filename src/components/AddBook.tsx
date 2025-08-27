@@ -4,19 +4,20 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import MenuHomepage from "./MenuHomepage";
 import "../css/homepage.css";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import Book from "../types/Book";
+// import { useDispatch } from "react-redux";
+// import { useState } from "react";
+// import Book from "../types/Book";
 
 const AddBook = () => {
-  const [book, setBook] = useState<Book>();
+  // const [book, setBook] = useState<Book>();
 
   return (
     <>
       <MenuHomepage />
       <section className="d-flex flex-column justify-content-center align-items-center mt-5">
         <h2>Nuovo libro</h2>
-        <Form onSubmit={() => setBook()}>
+        {/* <Form onSubmit={() => setBook()}> */}
+        <Form>
           {/* <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail"> */}
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm={2}>

@@ -25,7 +25,7 @@ const mainReducer = (state = initialState, action: Action) => {
     case "ADD":
       return {
         ...state,
-        totalBooks: { ...state.totalBooks, code: action.payload },
+        // totalBooks: { ...state.totalBooks, code: action.payload },
       };
   }
 };
