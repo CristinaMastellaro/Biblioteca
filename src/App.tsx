@@ -15,6 +15,8 @@ fare un'animazione che ti fa proprio entrare, tipo una porta che si apre. Non so
     * Mettere preferiti
 - La pagina dei dettagli del libro
     * Dovrà contenere le info del libro (titolo, autore, data di pubblicazione, editore, ebook/cartaceo, genere, possibili hashtag, note, se ho avuto impressioni particolari, quanto è costato, quando l'ho comprato...)
+    * Modificare i dettagli del libro
+    * (Later) In realtà si potrebbe anche rendere il nome dell'autore cliccabile, così da cercare online se ci sono altri suoi libri o cose simili, ma questa è una cosa secondaria
 - Sarebbe bello fare anche una pagina dei libri letti, ma che non ho in biblioteca
     * Quindi sarebbe da specificare dove ho preso il libro, ad es, se in biblioteca o è stato un prestito o che altro
     * Metti anche i libri che vorresti leggere (magari anche con un grado di quanto vorrei davvero leggerli)

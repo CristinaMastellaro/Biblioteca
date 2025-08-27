@@ -1,17 +1,23 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { FaList } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const MenuHomepage = () => {
   return (
     <Container>
-      <Row className="justify-content-end py-2 border border-1">
+      <Row
+        className="justify-content-start
+       py-2 border border-1"
+      >
         <div className="w-25">
           <FaList className="text-end" />
         </div>
       </Row>
       <Row xs={2}>
         <Col className="py-3 text-center border border-1 fw-semibold menu-item">
-          Biblioteca
+          <Link to="/homepage" className="text-decoration-none text-light">
+            Biblioteca
+          </Link>
         </Col>
         <Col className="py-3 text-center border border-1 fw-semibold menu-item">
           Altri libri
