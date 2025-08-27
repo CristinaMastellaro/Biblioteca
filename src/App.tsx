@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Entrance from "./components/Entrance";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,13 +23,13 @@ fare un'animazione che ti fa proprio entrare, tipo una porta che si apre. Non so
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Entrance />} path="/" />
-        <Route element={<Homepage />} path="/homepage" />
-        <Route element={<AddBook />} path="/addBook" />
-      </Routes>
-    </BrowserRouter>
+    // <BrowserRouter>
+    <Routes>
+      <Route element={<Entrance />} path="/" />
+      <Route element={<Homepage />} path="/homepage" />
+      <Route element={<AddBook />} path="/addBook" />
+    </Routes>
+    // </BrowserRouter>
   );
 }
 
