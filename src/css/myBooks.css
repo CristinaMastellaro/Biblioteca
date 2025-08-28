@@ -5,3 +5,11 @@
   border-radius: 1em;
   display: flex;
 }
+
+.book-sec {
+  background-color: white;
+}
+
+.book-sec h1 {
+  background-color: #1c3213;
+}

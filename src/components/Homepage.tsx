@@ -5,7 +5,7 @@ import MyBooks from "./MyBooks";
 
 const Homepage = () => {
   return (
-    <Container>
+    <Container className="container p-0">
       <MenuHomepage />
       <MyBooks />
     </Container>

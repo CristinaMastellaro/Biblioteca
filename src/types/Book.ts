@@ -1,9 +1,10 @@
 export default interface Book {
   title: string;
   author: string;
-  numPages: number;
+  numPages?: number;
   genre: string;
-  published: number;
+  favourite?: boolean;
+  published?: number;
   code: string;
   editor: string;
   type: "ebook" | "cartaceo" | "audiobook";

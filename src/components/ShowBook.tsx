@@ -1,0 +1,41 @@
+import { Card } from "react-bootstrap";
+import Book from "../types/Book";
+import { BiStar, BiSolidStar } from "react-icons/bi";
+import "../css/showBook.css";
+import { useState } from "react";
+
+interface ShowBookProps {
+  book: Book;
+}
+
+const ShowBook = ({ book }: ShowBookProps) => {
+  const [favourite, setFavourite] = useState(book.favourite);
+
+  return (
+    <Card className="m-3 flex-row border border-3 card-book">
+      {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+      <Card.Body>
+        <Card.Title>{book.title}</Card.Title>
+        <Card.Text className="mb-1">{book.author}</Card.Text>
+        <Card.Text style={{ fontSize: "0.8em" }}>{book.editor}</Card.Text>
+      </Card.Body>
+      <div className="d-flex align-items-center justify-content-center w-25">
+        {favourite ? (
+          <BiSolidStar
+            onClick={() => {
+              setFavourite(!favourite);
+            }}
+          />
+        ) : (
+          <BiStar
+            onClick={() => {
+              setFavourite(!favourite);
+            }}
+          />
+        )}
+      </div>
+    </Card>
+  );
+};
+
+export default ShowBook;
