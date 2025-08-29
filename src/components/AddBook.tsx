@@ -8,10 +8,14 @@ import "../css/homepage.css";
 // import { useState } from "react";
 import Book from "../types/Book";
 import { SubmitHandler, useForm } from "react-hook-form";
-// import { useState } from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addBookAction } from "../redux/actions";
 
 const AddBook = () => {
   // const [book, setBook] = useState<Book>();
+  const [cover, setCover] = useState<string>("");
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -21,8 +25,11 @@ const AddBook = () => {
   } = useForm<Book>();
 
   const onSubmit: SubmitHandler<Book> = (data) => {
+    data.cover = cover;
     // console.log(data);
     localStorage.setItem(data.code, JSON.stringify(data));
+    dispatch(addBookAction(data));
+    alert("Libro salvato!");
     // setBook(data);
     // console.log("book", book);
     // console.log("localStorage", localStorage.length);
@@ -35,7 +42,6 @@ const AddBook = () => {
   // const [editor, setEditor] = useState<string>("");
   // const [code, setCode] = useState<string>("");
   // const [price, setPrice] = useState<number>();
-  // const [bought, setBought] = useState<string>("");
 
   return (
     <>
@@ -149,6 +155,13 @@ const AddBook = () => {
                 // value={code}
                 // onChange={(e) => setCode(e.target.value)}
                 {...register("code")}
+                onChange={(e) => {
+                  setCover(
+                    "https://covers.openlibrary.org/b/isbn/" +
+                      e.target.value +
+                      "-M.jpg"
+                  );
+                }}
               />
             </Col>
           </Form.Group>
@@ -232,6 +245,45 @@ const AddBook = () => {
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
             <Form.Label as="legend" column sm={2}>
+              L'hai già letto?
+            </Form.Label>
+            <Col sm={10} className="d-flex gap-3">
+              <div className="d-flex">
+                <input
+                  type="radio"
+                  id="yesRead"
+                  value="true"
+                  className="me-1"
+                  {...register("alreadyRead", { required: true })}
+                />
+                <Form.Label column sm={2}>
+                  Sì
+                </Form.Label>
+              </div>
+              <div className="d-flex">
+                <input
+                  type="radio"
+                  id="noRead"
+                  {...register("alreadyRead", { required: true })}
+                  value=""
+                  defaultChecked
+                  className="me-1"
+                />
+                <Form.Label column sm={2}>
+                  No
+                </Form.Label>
+              </div>
+              {/* <select >
+                <option value="true">Sì</option>
+                <option value="false">No</option>
+              </select> */}
+              {errors.alreadyRead && (
+                <span>É necessario completare questo campo</span>
+              )}
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label as="legend" column sm={2}>
               Metterlo tra i preferiti?
             </Form.Label>
             <Col sm={10} className="d-flex gap-3">
@@ -252,7 +304,7 @@ const AddBook = () => {
                   type="radio"
                   id="no"
                   {...register("favourite", { required: true })}
-                  value="huey"
+                  value=""
                   defaultChecked
                   className="me-1"
                 />

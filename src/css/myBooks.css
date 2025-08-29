@@ -4,6 +4,7 @@
   background-color: #204212;
   border-radius: 1em;
   display: flex;
+  z-index: 1;
 }
 
 .book-sec {

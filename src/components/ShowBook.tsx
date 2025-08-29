@@ -3,6 +3,7 @@ import Book from "../types/Book";
 import { BiStar, BiSolidStar } from "react-icons/bi";
 import "../css/showBook.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface ShowBookProps {
   book: Book;
@@ -10,11 +11,16 @@ interface ShowBookProps {
 
 const ShowBook = ({ book }: ShowBookProps) => {
   const [favourite, setFavourite] = useState(book.favourite);
+  const navigate = useNavigate();
 
   return (
     <Card className="m-3 flex-row border border-3 card-book">
       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-      <Card.Body>
+      <Card.Body
+        onClick={() => {
+          navigate("/details/" + book.code);
+        }}
+      >
         <Card.Title>{book.title}</Card.Title>
         <Card.Text className="mb-1">{book.author}</Card.Text>
         <Card.Text style={{ fontSize: "0.8em" }}>{book.editor}</Card.Text>
