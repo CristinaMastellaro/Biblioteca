@@ -13,6 +13,8 @@ const MyBooks = () => {
     useSelector((state: State) => state.allBooks)
   );
 
+  console.log("books da selector", books);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

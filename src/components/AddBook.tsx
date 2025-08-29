@@ -4,32 +4,62 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import MenuHomepage from "./MenuHomepage";
 import "../css/homepage.css";
-// import { useDispatch } from "react-redux";
-// import { useState } from "react";
 import Book from "../types/Book";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addBookAction } from "../redux/actions";
+import { Alert } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
+
+interface addBookProps {
+  book: Book;
+}
+
+const noBook: Book = {
+  title: "",
+  author: "",
+  genre: "",
+  type: "cartaceo",
+  editor: "",
+  alreadyRead: false,
+  code: "",
+};
 
 const AddBook = () => {
   // const [book, setBook] = useState<Book>();
   const [cover, setCover] = useState<string>("");
+  const { state } = useLocation();
+  let book: Book;
+  if (state) {
+    book = state;
+  } else {
+    book = noBook;
+  }
+  console.log("book", book);
+  const [modify, setModify] = useState(book !== noBook);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
-    // watch,
+    // setValue,
     formState: { errors },
-  } = useForm<Book>();
+  } = useForm<Book>({ defaultValues: book });
 
   const onSubmit: SubmitHandler<Book> = (data) => {
-    data.cover = cover;
+    data.cover =
+      "https://covers.openlibrary.org/b/isbn/" + data.code + "-M.jpg";
+    console.log("data.cover", data.cover);
     // console.log(data);
+    if (modify) {
+      localStorage.removeItem(data.code);
+    }
     localStorage.setItem(data.code, JSON.stringify(data));
+    console.log("data", data);
     dispatch(addBookAction(data));
-    alert("Libro salvato!");
     // setBook(data);
     // console.log("book", book);
     // console.log("localStorage", localStorage.length);
@@ -46,7 +76,7 @@ const AddBook = () => {
   return (
     <>
       <MenuHomepage />
-      <section className="d-flex flex-column justify-content-center align-items-center mt-5">
+      <section className="d-flex flex-column justify-content-center align-items-center m-4 mt-5">
         <h2>Nuovo libro</h2>
         {/* <Form onSubmit={() => setBook()}> */}
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -59,6 +89,7 @@ const AddBook = () => {
               <Form.Control
                 type="text"
                 {...register("title", { required: true })}
+                // {modify ? setValue(book.title) : ""}
                 // required
                 // value={title}
                 // onChange={(e) => setTitle(e.target.value)}
@@ -76,6 +107,7 @@ const AddBook = () => {
             <Col sm={10}>
               <Form.Control
                 type="text"
+                // value={modify ? book.author : ""}
                 // required
                 // value={author}
                 // onChange={(e) => setAuthor(e.target.value)}
@@ -93,6 +125,7 @@ const AddBook = () => {
             <Col sm={10}>
               <Form.Control
                 type="text"
+                // value={modify ? book.genre : ""}
                 // required
                 // value={genre}
                 // onChange={(e) => setGenre(e.target.value)}
@@ -110,6 +143,7 @@ const AddBook = () => {
             <Col sm={10}>
               <Form.Control
                 type="number"
+                // value={modify ? book.numPages?.toString() : ""}
                 // value={price}
                 // onChange={(e) => setPrice(Number(e.target.value))}
                 {...register("numPages")}
@@ -123,6 +157,7 @@ const AddBook = () => {
             <Col sm={10}>
               <Form.Control
                 type="number"
+                // value={modify ? book.published?.toString() : ""}
                 // onChange={(e) => setPublished(e.target.value)}
                 {...register("published")}
               />
@@ -135,6 +170,7 @@ const AddBook = () => {
             <Col sm={10}>
               <Form.Control
                 type="text"
+                // value={modify ? book.editor : ""}
                 // required
                 // value={editor}
                 // onChange={(e) => setEditor(e.target.value)}
@@ -152,16 +188,17 @@ const AddBook = () => {
             <Col sm={10}>
               <Form.Control
                 type="text"
+                // value={modify ? book.code : ""}
                 // value={code}
                 // onChange={(e) => setCode(e.target.value)}
                 {...register("code")}
-                onChange={(e) => {
-                  setCover(
-                    "https://covers.openlibrary.org/b/isbn/" +
-                      e.target.value +
-                      "-M.jpg"
-                  );
-                }}
+                // onChange={(e) => {
+                //   setCover(
+                //     "https://covers.openlibrary.org/b/isbn/" +
+                //       e.target.value +
+                //       "-S.jpg"
+                //   );
+                // }}
               />
             </Col>
           </Form.Group>
@@ -172,6 +209,7 @@ const AddBook = () => {
             <Col sm={10}>
               <Form.Control
                 type="number"
+                // value={modify ? book.price?.toString() : ""}
                 // value={price}
                 // onChange={(e) => setPrice(Number(e.target.value))}
                 {...register("price")}
@@ -185,6 +223,7 @@ const AddBook = () => {
             <Col sm={10}>
               <Form.Control
                 type="date"
+                // value={modify ? book.dateYouBought : ""}
                 // onChange={(e) => setBought(e.target.value)}
                 {...register("dateYouBought")}
               />
@@ -197,32 +236,13 @@ const AddBook = () => {
               </Form.Label>
               <Col sm={10}>
                 <select {...register("type", { required: true })}>
-                  <option value="ebook">Ebook</option>
                   <option value="cartaceo">Cartaceo</option>
+                  <option value="ebook">Ebook</option>
                   <option value="audiobook">Audiobook</option>
                 </select>
                 {errors.type && (
                   <span>É necessario completare questo campo</span>
                 )}
-                {/* <Form.Check
-                  type="radio"
-                  label="Cartaceo"
-                  name="formHorizontalRadios"
-                  id="formHorizontalRadios1"
-                  required
-                />
-                <Form.Check
-                  type="radio"
-                  label="Ebook"
-                  name="formHorizontalRadios"
-                  id="formHorizontalRadios2"
-                />
-                <Form.Check
-                  type="radio"
-                  label="Audiobook"
-                  name="formHorizontalRadios"
-                  id="formHorizontalRadios3"
-                /> */}
               </Col>
             </Form.Group>
           </fieldset>
@@ -232,7 +252,11 @@ const AddBook = () => {
               Hashtags
             </Form.Label>
             <Col sm={10}>
-              <Form.Control type="text" {...register("hashtag")} />
+              <Form.Control
+                type="text"
+                {...register("hashtag")}
+                // value={modify && book.hashtag ? book.hashtag.toString() : ""}
+              />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
@@ -240,7 +264,11 @@ const AddBook = () => {
               Note
             </Form.Label>
             <Col sm={10}>
-              <Form.Control type="text" {...register("note")} />
+              <Form.Control
+                type="text"
+                // value={modify && book.note ? book.note : ""}
+                {...register("note")}
+              />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
@@ -258,6 +286,18 @@ const AddBook = () => {
                 />
                 <Form.Label column sm={2}>
                   Sì
+                </Form.Label>
+              </div>
+              <div className="d-flex">
+                <input
+                  type="radio"
+                  id="whileRead"
+                  value="while"
+                  className="me-1"
+                  {...register("alreadyRead", { required: true })}
+                />
+                <Form.Label column sm={2}>
+                  In lettura
                 </Form.Label>
               </div>
               <div className="d-flex">
@@ -323,7 +363,32 @@ const AddBook = () => {
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
             <Col sm={{ span: 10, offset: 2 }}>
-              <Button type="submit">Salva</Button>
+              {modify ? (
+                <>
+                  <Alert>
+                    Controlla che tutti i campi siano compilati correttamente,
+                    anche quelli che non hai modificato
+                  </Alert>
+                  <Button
+                    type="submit"
+                    onClick={() => {
+                      alert("Modifiche salvate!");
+                      navigate("/details/" + book.code);
+                    }}
+                  >
+                    Salva modifiche
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  type="submit"
+                  onClick={() => {
+                    alert("Libro salvato!");
+                  }}
+                >
+                  Salva
+                </Button>
+              )}
             </Col>
           </Form.Group>
         </Form>

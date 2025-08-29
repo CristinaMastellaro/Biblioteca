@@ -13,5 +13,5 @@ export default interface Book {
   hashtag?: string[];
   note?: string;
   price?: number;
-  dateYouBought?: Date;
+  dateYouBought?: string;
 }
