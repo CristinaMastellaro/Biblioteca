@@ -12,10 +12,6 @@ import { addBookAction } from "../redux/actions";
 import { Alert } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 
-interface addBookProps {
-  book: Book;
-}
-
 const noBook: Book = {
   title: "",
   author: "",
@@ -28,7 +24,7 @@ const noBook: Book = {
 
 const AddBook = () => {
   // const [book, setBook] = useState<Book>();
-  const [cover, setCover] = useState<string>("");
+  // const [cover, setCover] = useState<string>("");
   const { state } = useLocation();
   let book: Book;
   if (state) {
@@ -37,7 +33,10 @@ const AddBook = () => {
     book = noBook;
   }
   console.log("book", book);
-  const [modify, setModify] = useState(book !== noBook);
+  const [
+    modify,
+    // setModify
+  ] = useState(book !== noBook);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
