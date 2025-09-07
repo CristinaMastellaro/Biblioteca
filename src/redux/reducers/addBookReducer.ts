@@ -10,6 +10,7 @@ const initialState: Book = {
   code: "",
   editor: "",
   type: "cartaceo",
+  favourite: false,
 };
 
 const singleBookReducereducer = (state = initialState, action: Action) => {
