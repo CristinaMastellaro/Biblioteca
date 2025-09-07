@@ -12,13 +12,14 @@ const initialState: Book = {
   type: "cartaceo",
 };
 
-const addBookReducer = (state = initialState, action: Action) => {
+const singleBookReducereducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ADD_BOOK:
       return action.payload;
+
     default:
       return state;
   }
 };
 
-export default addBookReducer;
+export default singleBookReducereducer;

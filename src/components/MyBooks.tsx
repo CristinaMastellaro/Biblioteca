@@ -35,7 +35,7 @@ const MyBooks = () => {
       dispatch(allBooksAction(add));
       console.log("books", books);
     }
-  }, []);
+  }, [books]);
   console.log("localStorage.length", localStorage.length);
 
   const navigate = useNavigate();

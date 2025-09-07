@@ -59,6 +59,8 @@ const AddBook = () => {
     localStorage.setItem(data.code, JSON.stringify(data));
     console.log("data", data);
     dispatch(addBookAction(data));
+    alert("Libro salvato!");
+    navigate("/homepage");
     // setBook(data);
     // console.log("book", book);
     // console.log("localStorage", localStorage.length);
@@ -381,9 +383,9 @@ const AddBook = () => {
               ) : (
                 <Button
                   type="submit"
-                  onClick={() => {
-                    alert("Libro salvato!");
-                  }}
+                  // onClick={() => {
+                  //   alert("Libro salvato!");
+                  // }}
                 >
                   Salva
                 </Button>

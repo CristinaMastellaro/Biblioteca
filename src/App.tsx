@@ -21,6 +21,7 @@ fare un'animazione che ti fa proprio entrare, tipo una porta che si apre. Non so
 - Sarebbe bello fare anche una pagina dei libri letti, ma che non ho in biblioteca
     * Quindi sarebbe da specificare dove ho preso il libro, ad es, se in biblioteca o è stato un prestito o che altro
     * Metti anche i libri che vorresti leggere (magari anche con un grado di quanto vorrei davvero leggerli)
+- Quando crei un libro, accertati che non ci sia un libro con lo stesso codice!
 
 */
 
