@@ -14,7 +14,12 @@ const ShowBook = ({ book }: ShowBookProps) => {
   const navigate = useNavigate();
 
   return (
-    <Card className="m-3 flex-row border border-3 card-book">
+    <Card
+      className={
+        "m-3 flex-row border border-3 card-book" +
+        (favourite ? " favourite-book" : "")
+      }
+    >
       {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
       <Card.Body
         onClick={() => {

@@ -1,3 +1,14 @@
 .card-book {
   border-color: #204212 !important;
 }
+
+.card-book.favourite-book {
+  /* border-image-source: linear-gradient(
+    to left,
+    rgba(32, 66, 18, 1),
+    rgba(194, 12, 21, 1)
+  ) !important;
+  border-image-slice: 1 !important;
+  border-radius: 1em !important; */
+  border-color: #204212 #204212 #204212 rgba(194, 12, 21, 1) !important;
+}

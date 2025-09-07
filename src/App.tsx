@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Homepage from "./components/Homepage";
 import AddBook from "./components/AddBook";
 import Details from "./components/Details";
+import FavouriteBooks from "./components/FavouriteBooks";
 
 /* Come organizzo la cosa? Vorrei che avesse:
 - Una pagina iniziale carina, con un bottone in centro con scritto "Entra" o una cosa del genere. Sarebbe bellissimo 
@@ -33,6 +34,7 @@ function App() {
       <Route element={<Homepage />} path="/homepage" />
       <Route element={<AddBook />} path="/addBook" />
       <Route element={<Details />} path="/details/:code" />
+      <Route element={<FavouriteBooks />} path="/favourite" />
     </Routes>
     // </BrowserRouter>
   );

@@ -29,7 +29,7 @@ const MenuHomepage = () => {
         <LeftDropdown setShowDropdown={setShowDropdown} />
       )}
       {/* {putOverlay && <div className="overlay"></div>} */}
-      <Container>
+      <Container fluid>
         <Row
           className="justify-content-start
        py-2 border border-1"

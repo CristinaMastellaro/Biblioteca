@@ -1,0 +1,10 @@
+.favourite-sec {
+  background: #204212;
+  background: linear-gradient(
+    323deg,
+    rgba(32, 66, 18, 1) 70%,
+    rgba(194, 12, 21, 1) 94%
+  );
+  color: white;
+  padding: 1em 0;
+}

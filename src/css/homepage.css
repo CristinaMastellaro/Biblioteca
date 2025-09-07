@@ -1,4 +1,5 @@
-.container {
+.container,
+.container-fluid {
   background-color: #1c3213;
   color: white;
 }
