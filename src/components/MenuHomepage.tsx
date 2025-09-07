@@ -3,30 +3,32 @@ import { Container, Row, Col } from "react-bootstrap";
 import { FaList } from "react-icons/fa";
 import { Link } from "react-router-dom";
 // import LeftDropdown from "./LeftDropdown";
-import { BiX } from "react-icons/bi";
+// import { BiX } from "react-icons/bi";
 import "../css/leftDropdown.css";
+import LeftDropdown from "./LeftDropdown";
 
 const MenuHomepage = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [putOverlay, setPutOverlay] = useState(false);
+  // const [putOverlay, setPutOverlay] = useState(false);
 
   return (
     <>
       {showDropdown && (
-        <aside className="d-flex flex-column aside-sidebar">
-          <BiX
-            className="align-self-end mb-3"
-            onClick={() => {
-              setPutOverlay(false);
-              setShowDropdown(false);
-            }}
-          />
-          <p className="options">Libri preferiti</p>
-          <p className="options">Pagina personale</p>
-          <p className="options">Impostazioni</p>
-        </aside>
+        // <aside className="d-flex flex-column aside-sidebar">
+        //   <BiX
+        //     className="align-self-end mb-3"
+        //     onClick={() => {
+        //       setPutOverlay(false);
+        //       setShowDropdown(false);
+        //     }}
+        //   />
+        //   <p className="options">Libri preferiti</p>
+        //   <p className="options">Pagina personale</p>
+        //   <p className="options">Impostazioni</p>
+        // </aside>
+        <LeftDropdown setShowDropdown={setShowDropdown} />
       )}
-      {putOverlay && <div className="overlay"></div>}
+      {/* {putOverlay && <div className="overlay"></div>} */}
       <Container>
         <Row
           className="justify-content-start
@@ -36,7 +38,7 @@ const MenuHomepage = () => {
             <FaList
               className="text-end"
               onClick={() => {
-                setPutOverlay(true);
+                // setPutOverlay(true);
                 setShowDropdown(true);
               }}
             />

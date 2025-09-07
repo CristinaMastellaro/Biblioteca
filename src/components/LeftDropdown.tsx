@@ -8,6 +8,8 @@ interface LeftDropdownProps {
 
 const LeftDropdown = ({ setShowDropdown }: LeftDropdownProps) => {
   const [putOverlay, setPutOverlay] = useState(true);
+  const year = new Date().getFullYear();
+  console.log(year);
 
   return (
     <>
@@ -20,9 +22,22 @@ const LeftDropdown = ({ setShowDropdown }: LeftDropdownProps) => {
             setShowDropdown(false);
           }}
         />
-        <p className="options">Libri preferiti</p>
-        <p className="options">Pagina personale</p>
-        <p className="options">Impostazioni</p>
+        <div className="flex-grow-1">
+          <p className="options">Libri preferiti</p>
+          <p className="options">Pagina personale</p>
+          <p className="options">Impostazioni</p>
+        </div>
+        <div>
+          <p className="mb-0 small opacity-50 text-center">
+            © Copyright {year}
+          </p>
+          <p className="mb-0 small opacity-50 text-center">
+            Made by Cristina Mastellaro
+          </p>
+          <p className="mb-0 mt-2 lh-1 small opacity-50 text-center">
+            Picture in the initial page taken online
+          </p>
+        </div>
       </aside>
     </>
   );
