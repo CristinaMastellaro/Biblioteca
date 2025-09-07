@@ -16,6 +16,7 @@ const noBook: Book = {
   title: "",
   author: "",
   genre: "",
+  favourite: false,
   type: "cartaceo",
   editor: "",
   alreadyRead: false,
@@ -84,7 +85,7 @@ const AddBook = () => {
           {/* <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail"> */}
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm={2}>
-              Titolo
+              {"Titolo (*)"}
             </Form.Label>
             <Col sm={10}>
               <Form.Control
@@ -103,7 +104,7 @@ const AddBook = () => {
 
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm={2}>
-              Autore
+              {"Autore (*)"}
             </Form.Label>
             <Col sm={10}>
               <Form.Control
@@ -121,7 +122,7 @@ const AddBook = () => {
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm={2}>
-              Genere
+              {"Genere (*)"}
             </Form.Label>
             <Col sm={10}>
               <Form.Control
@@ -166,7 +167,7 @@ const AddBook = () => {
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm={2}>
-              Editore
+              {"Editore (*)"}
             </Form.Label>
             <Col sm={10}>
               <Form.Control
@@ -184,7 +185,7 @@ const AddBook = () => {
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm={2}>
-              Codice
+              {"Codice (*)"}
             </Form.Label>
             <Col sm={10}>
               <Form.Control
@@ -233,7 +234,7 @@ const AddBook = () => {
           <fieldset>
             <Form.Group as={Row} className="mb-3">
               <Form.Label as="legend" column sm={2}>
-                Tipo del libro
+                {"Tipo del libro (*)"}
               </Form.Label>
               <Col sm={10}>
                 <select {...register("type", { required: true })}>
@@ -325,7 +326,7 @@ const AddBook = () => {
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
             <Form.Label as="legend" column sm={2}>
-              Metterlo tra i preferiti?
+              {"Metterlo tra i preferiti? (*)"}
             </Form.Label>
             <Col sm={10} className="d-flex gap-3">
               <div className="d-flex">
@@ -363,7 +364,10 @@ const AddBook = () => {
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
-            <Col sm={{ span: 10, offset: 2 }}>
+            <p className="small opacity-75">
+              {"I campi contrassegnati da (*) sono obbligatori"}
+            </p>
+            <Col>
               {modify ? (
                 <>
                   <Alert>

@@ -4,7 +4,7 @@ export default interface Book {
   cover?: string;
   numPages?: number;
   genre: string;
-  favourite?: boolean;
+  favourite: boolean;
   published?: number;
   alreadyRead: boolean;
   code: string;

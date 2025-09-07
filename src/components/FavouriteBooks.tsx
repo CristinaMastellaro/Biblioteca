@@ -12,6 +12,7 @@ const FavouriteBooks = () => {
   return (
     <>
       <MenuHomepage />
+      <div className="wallpaper"></div>
       <section className="mt-1">
         <h1 className="text-center p-3 favourite-sec m-3">
           I tuoi libri preferiti

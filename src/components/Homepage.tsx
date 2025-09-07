@@ -8,7 +8,7 @@ const Homepage = () => {
     <>
       <div className="wallpaper"></div>
       <MenuHomepage />
-      <Container className="container p-0">
+      <Container className="container p-0 mx-3">
         <MyBooks />
       </Container>
     </>

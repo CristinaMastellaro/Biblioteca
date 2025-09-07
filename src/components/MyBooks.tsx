@@ -41,7 +41,7 @@ const MyBooks = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="my-3 book-sec">
+    <section className="my-3 book-sec pb-1">
       <div
         className="p-3 position-fixed plus-button"
         onClick={() => {
@@ -50,7 +50,7 @@ const MyBooks = () => {
       >
         <FaPlus />
       </div>
-      <h1 className="text-center p-3 mb-2">I libri della tua biblioteca</h1>
+      <h1 className="text-center p-3">I libri della tua biblioteca</h1>
       {books ? (
         books.map((book) => {
           return <ShowBook book={book} key={book.code} />;
