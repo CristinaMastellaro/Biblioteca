@@ -13,7 +13,7 @@ const FavouriteBooks = () => {
     <>
       <MenuHomepage />
       <section className="mt-1">
-        <h1 className="text-center p-3 favourite-sec">
+        <h1 className="text-center p-3 favourite-sec m-3">
           I tuoi libri preferiti
         </h1>
         {favourites

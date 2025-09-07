@@ -13,23 +13,24 @@ const MenuHomepage = () => {
 
   return (
     <>
-      {showDropdown && (
-        // <aside className="d-flex flex-column aside-sidebar">
-        //   <BiX
-        //     className="align-self-end mb-3"
-        //     onClick={() => {
-        //       setPutOverlay(false);
-        //       setShowDropdown(false);
-        //     }}
-        //   />
-        //   <p className="options">Libri preferiti</p>
-        //   <p className="options">Pagina personale</p>
-        //   <p className="options">Impostazioni</p>
-        // </aside>
-        <LeftDropdown setShowDropdown={setShowDropdown} />
-      )}
-      {/* {putOverlay && <div className="overlay"></div>} */}
-      <Container fluid>
+      <Container fluid className="container-menu">
+        {showDropdown && (
+          // <aside className="d-flex flex-column aside-sidebar">
+          //   <BiX
+          //     className="align-self-end mb-3"
+          //     onClick={() => {
+          //       setPutOverlay(false);
+          //       setShowDropdown(false);
+          //     }}
+          //   />
+          //   <p className="options">Libri preferiti</p>
+          //   <p className="options">Pagina personale</p>
+          //   <p className="options">Impostazioni</p>
+          // </aside>
+          <LeftDropdown setShowDropdown={setShowDropdown} />
+        )}
+        {/* {putOverlay && <div className="overlay"></div>} */}
+
         <Row
           className="justify-content-start
        py-2 border border-1"

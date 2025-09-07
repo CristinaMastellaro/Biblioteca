@@ -6,6 +6,7 @@ import MyBooks from "./MyBooks";
 const Homepage = () => {
   return (
     <>
+      <div className="wallpaper"></div>
       <MenuHomepage />
       <Container className="container p-0">
         <MyBooks />
