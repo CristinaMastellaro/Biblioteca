@@ -8,7 +8,7 @@ const Homepage = () => {
     <>
       <div className="wallpaper"></div>
       <MenuHomepage />
-      <Container className="container p-0 mx-3">
+      <Container className="p-0 mx-auto" style={{ width: "90%" }}>
         <MyBooks />
       </Container>
     </>

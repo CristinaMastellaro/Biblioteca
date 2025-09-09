@@ -14,3 +14,41 @@
 .book-sec h1 {
   background-color: #1c3213;
 }
+
+.drop-order {
+  position: absolute;
+  right: 1.5em;
+  top: 3.5em;
+  background-color: rgba(255, 255, 255);
+  z-index: 1;
+  border: 0.5px solid rgba(0, 0, 0, 0.208);
+  /* padding: 0.5em 1em; */
+  width: 6em;
+  border-radius: 0.3em;
+}
+
+.drop-order legend {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.drop-order ul {
+  padding-left: 0;
+  margin-bottom: 0.5em;
+  list-style-type: none;
+}
+
+.drop-order ul li {
+  padding: 0.3em 1em;
+  cursor: pointer;
+}
+
+.drop-order ul li:hover,
+.drop-order ul li:focus {
+  background-color: rgba(187, 187, 187, 0.156);
+}
+
+.on-click:active,
+.on-click:focus {
+  border: 0.5px solid rgba(0, 0, 0, 0.336);
+}

@@ -6,6 +6,14 @@ export const MODIFY_BOOK = "MODIFY_BOOK";
 export const DELETE_BOOK = "DELETE_BOOK";
 
 export const allBooksAction = (data: Book[]) => {
+  // const titles = data.map((book) => book.title).sort();
+  // const books: Book[] = [];
+  // for (let i = 0; i < titles.length; i++) {
+  //   data.forEach((book) => {
+  //     if (book.title === titles[i]) books.push(book);
+  //   });
+  // }
+  // console.log("books rearranged", books);
   return {
     type: ALL_BOOKS,
     payload: data,

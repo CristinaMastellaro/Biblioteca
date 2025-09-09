@@ -211,6 +211,7 @@ const AddBook = () => {
             <Col sm={10}>
               <Form.Control
                 type="number"
+                step="0.01"
                 // value={modify ? book.price?.toString() : ""}
                 // value={price}
                 // onChange={(e) => setPrice(Number(e.target.value))}
