@@ -27,13 +27,8 @@ const AddBook = () => {
   // const [book, setBook] = useState<Book>();
   // const [cover, setCover] = useState<string>("");
   const { state } = useLocation();
-  let book: Book;
-  if (state) {
-    book = state;
-  } else {
-    book = noBook;
-  }
-  console.log("book", book);
+  const book: Book = state ? state : noBook;
+  // console.log("book", book);
   const [
     modify,
     // setModify
@@ -54,9 +49,9 @@ const AddBook = () => {
       "https://covers.openlibrary.org/b/isbn/" + data.code + "-M.jpg";
     console.log("data.cover", data.cover);
     // console.log(data);
-    if (modify) {
-      localStorage.removeItem(data.code);
-    }
+    // if (modify) {
+    //   localStorage.removeItem(data.code);
+    // }
     localStorage.setItem(data.code, JSON.stringify(data));
     console.log("data", data);
     dispatch(addBookAction(data));
@@ -66,14 +61,6 @@ const AddBook = () => {
     // console.log("book", book);
     // console.log("localStorage", localStorage.length);
   };
-
-  // const [title, setTitle] = useState<string>("");
-  // const [author, setAuthor] = useState<string>("");
-  // const [genre, setGenre] = useState<string>("");
-  // const [published, setPublished] = useState<string>("");
-  // const [editor, setEditor] = useState<string>("");
-  // const [code, setCode] = useState<string>("");
-  // const [price, setPrice] = useState<number>();
 
   return (
     <>

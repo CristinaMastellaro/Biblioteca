@@ -4,6 +4,8 @@ import { BiStar, BiSolidStar } from "react-icons/bi";
 import "../css/showBook.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { titleOrderedAction } from "../redux/actions";
 
 interface ShowBookProps {
   book: Book;
@@ -12,6 +14,7 @@ interface ShowBookProps {
 const ShowBook = ({ book }: ShowBookProps) => {
   const [favourite, setFavourite] = useState(book.favourite);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <Card
@@ -34,13 +37,18 @@ const ShowBook = ({ book }: ShowBookProps) => {
         {favourite ? (
           <BiSolidStar
             onClick={() => {
-              setFavourite(!favourite);
+              setFavourite(false);
+              book = { ...book, favourite: false };
+              localStorage.setItem(book.code, JSON.stringify(book));
+              dispatch(titleOrderedAction("a-z"));
             }}
           />
         ) : (
           <BiStar
             onClick={() => {
-              setFavourite(!favourite);
+              setFavourite(true);
+              book = { ...book, favourite: true };
+              localStorage.setItem(book.code, JSON.stringify(book));
             }}
           />
         )}

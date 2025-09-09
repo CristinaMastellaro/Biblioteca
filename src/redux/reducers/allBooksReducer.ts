@@ -7,11 +7,13 @@ const initialState: Book[] = [];
 const allBooksReducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case ALL_BOOKS:
-      return action.payload;
+      state = initialState;
+      return state.concat(action.payload);
     case ADD_BOOK:
       return state.concat(action.payload);
     case DELETE_BOOK:
       return state.filter((book) => book !== action.payload);
+
     default:
       return state;
   }
