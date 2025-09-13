@@ -5,7 +5,11 @@ import "../css/showBook.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { titleOrderedAction } from "../redux/actions";
+import {
+  addBookAction,
+  addToFavourites,
+  titleOrderedAction,
+} from "../redux/actions";
 
 interface ShowBookProps {
   book: Book;
@@ -39,7 +43,8 @@ const ShowBook = ({ book }: ShowBookProps) => {
             onClick={() => {
               setFavourite(false);
               book = { ...book, favourite: false };
-              localStorage.setItem(book.code, JSON.stringify(book));
+              dispatch(addToFavourites(book));
+              // localStorage.setItem(book.code, JSON.stringify(book));
               dispatch(titleOrderedAction("a-z"));
             }}
           />
@@ -48,7 +53,9 @@ const ShowBook = ({ book }: ShowBookProps) => {
             onClick={() => {
               setFavourite(true);
               book = { ...book, favourite: true };
-              localStorage.setItem(book.code, JSON.stringify(book));
+              dispatch(addToFavourites(book));
+              dispatch(titleOrderedAction("a-z"));
+              // localStorage.setItem(book.code, JSON.stringify(book));
             }}
           />
         )}

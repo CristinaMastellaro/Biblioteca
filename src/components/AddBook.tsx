@@ -3,8 +3,9 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import MenuHomepage from "./MenuHomepage";
-import "../css/homepage.css";
+import "../css/addBook.css";
 import Book from "../types/Book";
+import { BiSolidCameraPlus } from "react-icons/bi";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -16,6 +17,7 @@ const noBook: Book = {
   title: "",
   author: "",
   genre: "",
+  cover: undefined,
   favourite: false,
   type: "cartaceo",
   editor: "",
@@ -26,6 +28,9 @@ const noBook: Book = {
 const AddBook = () => {
   // const [book, setBook] = useState<Book>();
   // const [cover, setCover] = useState<string>("");
+
+  // If there's an ID in the location path, it means we're trying to modify
+  // a book; so we need the data of this book
   const { state } = useLocation();
   const book: Book = state ? state : noBook;
   // console.log("book", book);
@@ -33,8 +38,8 @@ const AddBook = () => {
     modify,
     // setModify
   ] = useState(book !== noBook);
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const {
@@ -44,10 +49,12 @@ const AddBook = () => {
     formState: { errors },
   } = useForm<Book>({ defaultValues: book });
 
+  const [cover, setCover] = useState<string>();
+
   const onSubmit: SubmitHandler<Book> = (data) => {
-    data.cover =
-      "https://covers.openlibrary.org/b/isbn/" + data.code + "-M.jpg";
-    console.log("data.cover", data.cover);
+    // data.cover =
+    //   "https://covers.openlibrary.org/b/isbn/" + data.code + "-M.jpg";
+    // console.log("data.cover", data.cover);
     // console.log(data);
     // if (modify) {
     //   localStorage.removeItem(data.code);
@@ -70,6 +77,58 @@ const AddBook = () => {
         {/* <Form onSubmit={() => setBook()}> */}
         <Form onSubmit={handleSubmit(onSubmit)}>
           {/* <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail"> */}
+
+          {/* Aggiungere foto della copertina o del libro in generale */}
+          <p className="mb-0">Immagine di copertina</p>
+          {cover ? (
+            <Form.Group
+              as={Row}
+              className="chooseCover mb-3 position-relative text-center py-3 w-50 mt-2 ms-1"
+            >
+              <img src={cover} alt="Cover del libro" />
+              <Col sm={10}>
+                <Form.Control
+                  type="file"
+                  {...register("cover", { required: false })}
+                  accept="image/*;capture=camera"
+                  onChange={(e) => {
+                    const urlImage = URL.createObjectURL(
+                      (e.target as HTMLInputElement).files![0]
+                    );
+                    setCover(urlImage);
+                    console.log("cover", cover);
+                  }}
+                />
+              </Col>
+              <p className="mb-0 mt-2 small" style={{ fontSize: "0.8em" }}>
+                Clicca l'immagine per cambiarla
+              </p>
+            </Form.Group>
+          ) : (
+            <Form.Group
+              as={Row}
+              className="chooseCover mb-3 position-relative text-center py-3 w-50 mt-2 ms-1"
+            >
+              <div>
+                <BiSolidCameraPlus className="fs-2" />
+              </div>
+              <Col sm={10}>
+                <Form.Control
+                  type="file"
+                  {...register("cover", { required: false })}
+                  accept="image/*;capture=camera"
+                  onChange={(e) => {
+                    const urlImage = URL.createObjectURL(
+                      (e.target as HTMLInputElement).files![0]
+                    );
+                    setCover(urlImage);
+                    console.log("cover", cover);
+                  }}
+                />
+              </Col>
+            </Form.Group>
+          )}
+
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm={2}>
               {"Titolo (*)"}

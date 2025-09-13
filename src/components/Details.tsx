@@ -32,6 +32,7 @@ const Details = () => {
 
   useEffect(() => {
     setBook(myBook[0]);
+    // book!.cover = URL.createObjectURL(book.cover);
     console.log("book", myBook);
   }, []);
 
