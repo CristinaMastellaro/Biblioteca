@@ -5,11 +5,7 @@ import "../css/showBook.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {
-  addBookAction,
-  addToFavourites,
-  titleOrderedAction,
-} from "../redux/actions";
+import { addToFavourites, titleOrderedAction } from "../redux/actions";
 
 interface ShowBookProps {
   book: Book;
