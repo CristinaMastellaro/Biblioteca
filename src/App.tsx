@@ -7,6 +7,7 @@ import Homepage from "./components/Homepage";
 import AddBook from "./components/AddBook";
 import Details from "./components/Details";
 import FavouriteBooks from "./components/FavouriteBooks";
+import WishList from "./components/WishList";
 
 /* Come organizzo la cosa? Vorrei che avesse:
 - Una pagina iniziale carina, con un bottone in centro con scritto "Entra" o una cosa del genere. Sarebbe bellissimo 
@@ -35,6 +36,7 @@ function App() {
       <Route element={<AddBook />} path="/addBook" />
       <Route element={<Details />} path="/details/:code" />
       <Route element={<FavouriteBooks />} path="/favourite" />
+      <Route element={<WishList />} path="/wanted" />
     </Routes>
     // </BrowserRouter>
   );

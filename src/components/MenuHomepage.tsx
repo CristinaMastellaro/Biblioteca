@@ -52,7 +52,9 @@ const MenuHomepage = () => {
             </Link>
           </Col>
           <Col className="py-3 text-center border border-1 fw-semibold menu-item">
-            Altri libri
+            <Link to="/wanted" className="text-decoration-none text-light">
+              Altri libri
+            </Link>
           </Col>
         </Row>
       </Container>
