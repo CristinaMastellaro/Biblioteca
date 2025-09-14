@@ -49,7 +49,7 @@ const AddBook = () => {
     formState: { errors },
   } = useForm<Book>({ defaultValues: book });
 
-  const [cover, setCover] = useState<string>();
+  const [cover, setCover] = useState<string | undefined>(book.cover);
 
   const onSubmit: SubmitHandler<Book> = (data) => {
     // data.cover =
@@ -59,6 +59,7 @@ const AddBook = () => {
     // if (modify) {
     //   localStorage.removeItem(data.code);
     // }
+    data.cover = cover;
     localStorage.setItem(data.code, JSON.stringify(data));
     console.log("data", data);
     dispatch(addBookAction(data));
@@ -122,7 +123,7 @@ const AddBook = () => {
                       (e.target as HTMLInputElement).files![0]
                     );
                     setCover(urlImage);
-                    console.log("cover", cover);
+                    // console.log("cover", cover);
                   }}
                 />
               </Col>
