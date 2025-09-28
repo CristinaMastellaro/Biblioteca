@@ -1,4 +1,5 @@
 import Book from "../../types/Book";
+import WishedBook from "../../types/WishedBook";
 
 // First, all the methods that change all the books
 // This takes all the books and sorts them based on title, author etc.
@@ -22,9 +23,11 @@ export const titleOrderedAction = (order: string) => {
   const add = [];
   for (let i = 0; i < localStorage.length; i++) {
     const index = localStorage.key(i);
-    const book: Book = JSON.parse(localStorage.getItem(index!)!);
-    // console.log("book", book);
-    add.push(book);
+    if (Number(index?.replaceAll("-", ""))) {
+      const book: Book = JSON.parse(localStorage.getItem(index!)!);
+      // console.log("book", book);
+      add.push(book);
+    }
     // console.log("book", typeof book);
   }
   const titles = add.map((book) => book.title).sort(orderBooks);
@@ -107,6 +110,72 @@ export const addToFavourites = (book: Book) => {
   localStorage.setItem(book.code, JSON.stringify(book));
   return {
     type: ADD_TO_FAVOURITES,
+    payload: book,
+  };
+};
+
+// Actions connected to wish list
+export const ALL_BOOKS_WISH_LIST = "ALL_BOOKS_WISH_LIST";
+export const ADD_TO_WISH_LIST = "ADD_TO_WISH_LIST";
+export const REMOVE_FROM_WISH_LIST = "REMOVE_FROM_WISH_LIST";
+
+export const allBooksWishListAction = () => {
+  const orderBooksByPriority: WishedBook[] = [];
+  const add = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const index = localStorage.key(i);
+    console.log(
+      `Number(index?.replaceAll("", ""))`,
+      isNaN(Number(index?.replaceAll("-", "")))
+    );
+    if (isNaN(Number(index?.replaceAll("-", "")))) {
+      const book: WishedBook = JSON.parse(localStorage.getItem(index!)!);
+      // console.log("book", book);
+      add.push(book);
+    }
+  }
+
+  console.log("add", add);
+
+  const titles = add.map((book) => book.title).sort();
+  const rearrangedBooks: WishedBook[] = [];
+  for (let i = 0; i < titles.length; i++) {
+    add.forEach((book) => {
+      if (book.title === titles[i]) rearrangedBooks.push(book);
+    });
+  }
+  console.log("rearrangedBooks", rearrangedBooks);
+
+  const priorities = ["important", "notImportant"];
+
+  priorities.forEach((priority) => {
+    for (let i = 0; i < rearrangedBooks.length; i++) {
+      if (rearrangedBooks[i].priority === priority)
+        orderBooksByPriority.push(rearrangedBooks[i]);
+    }
+  });
+
+  console.log("orderBooksByPriority", orderBooksByPriority);
+
+  return {
+    type: ALL_BOOKS_WISH_LIST,
+    payload: orderBooksByPriority,
+  };
+};
+
+export const addToWishListAction = (book: WishedBook) => {
+  localStorage.setItem(book.title, JSON.stringify(book));
+  console.log("Libro aggiunto!");
+  return {
+    type: ADD_TO_WISH_LIST,
+    payload: book,
+  };
+};
+
+export const removeFromWishListAction = (book: WishedBook) => {
+  localStorage.removeItem(book.title);
+  return {
+    type: REMOVE_FROM_WISH_LIST,
     payload: book,
   };
 };

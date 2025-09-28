@@ -12,3 +12,7 @@
   border-radius: 1em !important; */
   border-color: #204212 #204212 #204212 rgba(194, 12, 21, 1) !important;
 }
+
+.high-priority {
+  border-color: rgba(194, 12, 21, 1) #204212 #204212 #204212 !important;
+}

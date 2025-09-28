@@ -9,7 +9,7 @@ import { BiSolidCameraPlus } from "react-icons/bi";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addBookAction } from "../redux/actions";
+import { addBookAction, addToFavourites } from "../redux/actions";
 import { Alert } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -26,9 +26,6 @@ const noBook: Book = {
 };
 
 const AddBook = () => {
-  // const [book, setBook] = useState<Book>();
-  // const [cover, setCover] = useState<string>("");
-
   // If there's an ID in the location path, it means we're trying to modify
   // a book; so we need the data of this book
   const { state } = useLocation();
@@ -63,8 +60,11 @@ const AddBook = () => {
     localStorage.setItem(data.code, JSON.stringify(data));
     console.log("data", data);
     dispatch(addBookAction(data));
-    alert("Libro salvato!");
-    navigate("/homepage");
+    dispatch(addToFavourites(data));
+    if (!modify) {
+      alert("Libro salvato!");
+      navigate("/homepage");
+    }
     // setBook(data);
     // console.log("book", book);
     // console.log("localStorage", localStorage.length);

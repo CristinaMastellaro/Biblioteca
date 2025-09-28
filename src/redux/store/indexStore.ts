@@ -1,8 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 // import mainReducer from "../reducers/indexReducers";
 import allBooksReducer from "../reducers/allBooksReducer";
+import wishListReducer from "../reducers/wishListReducer";
 
-const rootReducer = combineReducers({ allBooks: allBooksReducer });
+const rootReducer = combineReducers({
+  allBooks: allBooksReducer,
+  wishList: wishListReducer,
+});
 // export type IRootState = ReturnType<typeof rootReducer>;
 
 // const customizedMiddleware = getDefaultMiddleware({

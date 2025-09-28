@@ -18,7 +18,9 @@ const FavouriteBooks = () => {
           I tuoi libri preferiti
         </h1>
         {favourites
-          ? favourites.map((book) => <ShowBook book={book} key={book.code} />)
+          ? favourites.map((book) => (
+              <ShowBook book={book} key={book.code} wishList={false} />
+            ))
           : "Non hai ancora selezionato i tuoi libri preferiti"}
       </section>
     </>

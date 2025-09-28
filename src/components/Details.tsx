@@ -54,13 +54,7 @@ const Details = () => {
             <p>Codice ISBN: {book.code}</p>
             <p>Genere: {book.genre}</p>
             <p>Formato: {book.type}</p>
-            {
-              book.dateYouBought && <p>Data d'acquisto: {book.dateYouBought}</p>
-              // : (
-              //   // <p>Data d'acquisto: {book.dateYouBought.toDateString()}</p>
-              //   ""
-              // )
-            }
+            {book.dateYouBought && <p>Data d'acquisto: {book.dateYouBought}</p>}
             {book.price ? <p>Prezzo: {book.price}€</p> : ""}
             {book.numPages ? <p>Numero di pagine: {book.numPages}</p> : ""}
             {book.hashtag ? <p>Hashtags: {book.hashtag}</p> : ""}

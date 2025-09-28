@@ -121,7 +121,7 @@ const MyBooks = () => {
             book.title.toLowerCase().includes(search.toLowerCase())
           )
           .map((book) => {
-            return <ShowBook book={book} key={book.code} />;
+            return <ShowBook book={book} key={book.code} wishList={false} />;
           })
       ) : (
         <span>"Salva il tuo primo libro!"</span>
